@@ -1,0 +1,39 @@
+name: japspos_customer_app
+description: "Japspos Customer Apps - JapsPos Customer App: price check, orders and invoices."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  shared_preferences: ^2.3.2
+  http: ^1.2.2
+  intl: ^0.20.0
+  share_plus: ^10.0.0
+  google_fonts: ^6.2.1
+  mobile_scanner: 7.4.2
+  image_picker: ^1.1.2
+  webview_flutter: ^4.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  remove_alpha_ios: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
