@@ -103,7 +103,7 @@ class _SetupScreenState extends State<SetupScreen> {
                 CaField(
                   label: 'Base URL',
                   controller: _url,
-                  hint: 'https://your-store.japspos.com',
+                  hint: 'www.xyz.com',
                   keyboardType: TextInputType.url,
                   suffix: const Icon(Icons.link, color: CaColors.slate400),
                   onChanged: (_) {
@@ -112,7 +112,7 @@ class _SetupScreenState extends State<SetupScreen> {
                   validator: (v) => (v ?? '').trim().isEmpty ? 'Base URL is required' : null,
                 ),
                 const SizedBox(height: 6),
-                const Text('The address of your store\'s JapsPos.', style: TextStyle(fontSize: 12, color: CaColors.slate400)),
+                const Text('Any domain works: .com, .net, .store, or any other. Example: www.xyz.com', style: TextStyle(fontSize: 12, color: CaColors.slate400)),
                 const SizedBox(height: 18),
                 CaButton(
                   label: _busy ? 'Checking server…' : (_activated ? 'API Active' : 'Activate'),

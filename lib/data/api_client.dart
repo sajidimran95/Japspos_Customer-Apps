@@ -32,16 +32,18 @@ class ApiClient {
   String? token;
   void Function()? onAuthExpired;
 
+  /// Any store domain. `www.xyz.com` and `https://www.xyz.com/customer` both
+  /// become `https://www.xyz.com`. Paths are dropped so API calls always use
+  /// `{domain}/api/v1/customer`.
   static String normalizeBaseUrl(String raw) {
     var url = raw.trim();
     if (url.isEmpty) return url;
-    if (!url.startsWith('http://') && !url.startsWith('https://')) url = 'https://$url';
-    while (url.endsWith('/')) {
-      url = url.substring(0, url.length - 1);
-    }
-    final api = url.toLowerCase().indexOf('/api');
-    if (api > url.indexOf('://') + 3) url = url.substring(0, api);
-    return url;
+    if (!url.contains('://')) url = 'https://$url';
+    final uri = Uri.tryParse(url);
+    if (uri == null || uri.host.isEmpty) return url;
+    final scheme = uri.scheme == 'http' ? 'http' : 'https';
+    final port = uri.hasPort ? ':${uri.port}' : '';
+    return '$scheme://${uri.host.toLowerCase()}$port';
   }
 
   /// Returns null when [baseUrl] runs the JapsPos mobile API, or a reason otherwise.
